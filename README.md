@@ -22,3 +22,4 @@ For more info on the project see the [UCL DH](http://blogs.ucl.ac.uk/dh/2015/05/
 
 
 Note: Unzip Users/rosafilgueira/EPCC/ATI-SE/Humanities/Rosa_Versions/cluster-code/bluclobber/test/fixtures/zips
+      Install Spark- Mac os x: brew install apache-spark
