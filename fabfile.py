@@ -1,11 +1,11 @@
 from deploy.remote import *
 from deploy.grace import *
 
-env.user='ucgajhe'
+env.user='rosa'
 
-env.results_dir="/home/"+env.user+"/Scratch/BluclobberSpark/output"
+env.results_dir="/Users/rosafilgueira/EPCC/ATI-SE/Humanities/Rosa_Versions/cluster-code/output"
 
 env.model="bluclobber"
-env.corpus='/rdZone/live/rd003v/CompressedALTO-fromJamesH/CompressedALTO'
+env.corpus='/Users/rosafilgueira/EPCC/ATI-SE/Humanities/Rosa_Versions/cluster-code/bluclobber/test/fixtures/corpus24/'
 
-env.deploy_to="/home/"+env.user+"/devel/BluclobberSpark"
+env.deploy_to="/Users/rosafilgueira/EPCC/ATI-SE/Humanities/Rosa_Versions/cluster-code/results"
