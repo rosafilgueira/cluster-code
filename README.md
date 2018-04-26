@@ -20,4 +20,6 @@ All code is available for use and reuse under a [MIT Licence](http://opensource.
 
 For more info on the project see the [UCL DH](http://blogs.ucl.ac.uk/dh/2015/05/07/bluclobber-or-enabling-complex-analysis-of-large-scale-digital-collections/) and [British Library Digital Scholarship](http://britishlibrary.typepad.co.uk/digital-scholarship/) blogs.
 
-fab prepare:query=queries/mean_pages.py test
+### Testing Locally
+
+ * On OS X: `fab prepare:query=queries/mean_pages.py test`
