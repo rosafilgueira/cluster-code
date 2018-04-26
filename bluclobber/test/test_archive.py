@@ -1,5 +1,9 @@
+
 from unittest import TestCase
 from lxml import etree
+
+import sys
+sys.path.append("..")
 
 from .fixtures import path
 from ..archive import Archive
