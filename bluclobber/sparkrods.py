@@ -1,5 +1,6 @@
 import pyspark
 import requests
+from requests import get
 
 def get_streams(downsample=1, source="oids.txt", app="iRodsSpark"):
 
@@ -7,11 +8,8 @@ def get_streams(downsample=1, source="oids.txt", app="iRodsSpark"):
     sc = pyspark.SparkContext(appName=app)
 
     oids = map(lambda x: x.strip(), list(open('oids.txt')))
-
+    print(">>> oids is %s" % oids)
     rddoids = sc.parallelize(oids)
-    down = rddoids.sample(False, 1.0 / downsample )
-
-    streams = down.map(lambda x:
-                       requests.get('http://arthur.rd.ucl.ac.uk/objects/'+x,
-                       stream=True).raw)
+    streams = rddoids.map(lambda url: get(url, stream=True).raw)
+    print (">>>>>>> Streams %s" % streams)
     return streams
