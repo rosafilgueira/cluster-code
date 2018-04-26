@@ -1,0 +1,2 @@
+https://github.com/rosafilgueira/cluster-code/raw/master/bluclobber/test/fixtures/corpus24/000962896_0_1-56pgs__999275_dat.zip
+https://github.com/rosafilgueira/cluster-code/raw/sparkrods/bluclobber/test/fixtures/corpus24/000212193_1_1-340pgs__657114_dat.zip
