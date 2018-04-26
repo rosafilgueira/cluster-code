@@ -1,5 +1,4 @@
-from deploy.remote import *
-from deploy.grace import *
+from deploy.local import *
 
 env.user='rosa'
 
