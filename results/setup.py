@@ -7,12 +7,9 @@ def read(fname):
 setup(
     name = "bluclobber",
     version = "0.0.1",
-    author = "James Hetherington",
-    author_email = "j.hetherington@ucl.ac.uk",
     description = ("Harness for cluster map/reduce analysis of ALTO books corpus"),
     license = "BSD",
     keywords = "digital humanities research books",
-    url = "http://development.rc.ucl.ac.uk/",
     packages=['bluclobber'],
     long_description=read('README.md'),
     classifiers=[
