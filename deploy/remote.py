@@ -5,26 +5,21 @@ import os
 from datetime import datetime
 from contextlib import nested
 
-env.hosts=['legion.rc.ucl.ac.uk']
-env.machine='legion'
-env.user='ucgajhe'
-
 @task
 def prepare():
     execute(dependencies)
     execute(install)
-    execute(storeids)
+    #execute(storeids)
 
 @task
 def install():
-    run('mkdir -p '+env.deploy_to)
-    with cd(env.deploy_to):
-        put(env.model,'.')
-        put('setup.py', 'setup.py')
-        put('README.md', 'README.md')
-        with prefix('module load python2/recommended'):
-            run('python setup.py develop --user')
-            run('py.test')
+    local('mkdir -p '+env.deploy_to)
+    with lcd(env.deploy_to):
+        local('cp -r ../'+env.model +' ./')
+        local('cp -r ../setup.py ./')
+        local('cp -r ../README.md ./')
+        local('python setup.py develop')
+        local('py.test')
 
 @task
 def sub(query, subsample=1, processes=12, wall='2:0:0'):
@@ -46,20 +41,20 @@ def sub(query, subsample=1, processes=12, wall='2:0:0'):
         with open('query.sh','w') as script_file:
             script_file.write(script)
 
-    run('mkdir -p '+env.run_at)
+    local('mkdir -p '+env.run_at)
     with cd(env.run_at):
        put(query, 'query.py')
        put('query.sh','query.sh')
-       run('cp ../oids.txt .')
-       run('qsub query.sh')
+       local('cp ../oids.txt .')
+       local('qsub query.sh')
 
 @task
 def storeids():
-    run('mkdir -p '+env.results_dir)
+    local('mkdir -p '+env.results_dir)
     with cd(env.results_dir):
        with prefix('module load icommands'):
-           run('iinit')
-           run('iquest --no-page "%s" '+
+           local('iinit')
+           local('iquest --no-page "%s" '+
            '"SELECT DATA_PATH where COLL_NAME like '+
            "'"+env.corpus+"%'"+
            " and DATA_NAME like '%-%.zip' "+
@@ -67,7 +62,7 @@ def storeids():
 
 @task
 def stat():
-    run('qstat')
+    local('qstat')
 
 @task
 def fetch():
@@ -77,7 +72,5 @@ def fetch():
 
 @task
 def dependencies():
-    with prefix('module load python2/recommended'):
-        run("pip install --user lxml")
-        run("pip install --user pyyaml")
-        run("pip install --user pytest")
+    local('pip install lxml pyyaml pytest' +
+          ' psutil requests')
