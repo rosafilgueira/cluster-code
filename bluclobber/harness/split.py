@@ -17,7 +17,8 @@ diseases=set([
         'cancer'
         ])
 
-mypath="./output"
+mypath= sys.argv[1]
+
 final_files = sorted([f for f in glob.glob(mypath+'/final*')])
 year_data = {}
 
@@ -42,7 +43,8 @@ for y in year_data:
                 pass
 
 
-path="./data/"
+path= sys.argv[2]
+
 for d in d_total:
 	print ("dissease %s: %s\n" %(d,d_total[d]))
 	name_file=path+d+".yml"
