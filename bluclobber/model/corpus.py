@@ -1,3 +1,5 @@
+import sys
+sys.path.append('../')
 import glob
 import os
 import traceback
@@ -8,9 +10,9 @@ from functools import reduce
 
 from dataset import DataSet
 
-from ..harness.mapreduce import MapReduce
-from ..harness.utils import merge
-from ..harness.decomposer import Decomposer
+from harness.mapreduce import MapReduce
+from harness.utils import merge
+from harness.decomposer import Decomposer
 
 import logging
 
