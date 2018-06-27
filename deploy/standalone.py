@@ -24,7 +24,7 @@ def install(query):
     local('mkdir -p ' + env.standalone_deploy_dir)
     with lcd(env.standalone_deploy_dir):  # pylint: disable=not-context-manager
         local('cp -r ../bluclobber/ .')
-        local('cp ../' + query + './bluclobber/harness/query_sub.py')
+        local('cp ../' + query + ' ./bluclobber/harness/query_sub.py')
         local('cp ../deploy/urika.sh ./harness/.')
         local('find . -iname "*.pyc" -delete')
         local('find . -iname "__pycache__" -delete')
