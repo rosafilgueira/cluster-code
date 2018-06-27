@@ -15,19 +15,17 @@ mkdir $final
 
 for i in $remote_directory/1*; do
   if [ -d "$i" ]; then
-	echo $i
 	path=$i
 	outputpath=$output
 	year=${i##*/}
 	outputpath+="out_"$year
-	echo $outputpath
-        #./run_query.sh $NP $query $path $outputpath
         echo $NP $query $path $outputpath
+        ./run_query.sh $NP $query $path $outputpath
     
   fi
 done
 
-#python join.sh $NP
-#python split.sh $output $final
+python join.sh $NP
+python split.sh $output $final
 
 
