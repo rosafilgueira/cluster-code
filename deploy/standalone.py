@@ -35,7 +35,7 @@ def test():
     '''
     Run the query.
     '''
-    with lcd(env.standalone_deploy_dir+'./bluclobber/harness'):  # pylint: disable=not-context-manager
+    with lcd(env.standalone_deploy_dir+'/bluclobber/harness'):  # pylint: disable=not-context-manager
         local('./urika.sh query_sub.py')
 
 
