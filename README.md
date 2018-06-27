@@ -21,5 +21,8 @@ All code is available for use and reuse under a [MIT Licence](http://opensource.
 For more info on the project see the [UCL DH](http://blogs.ucl.ac.uk/dh/2015/05/07/bluclobber-or-enabling-complex-analysis-of-large-scale-digital-collections/) and [British Library Digital Scholarship](http://britishlibrary.typepad.co.uk/digital-scholarship/) blogs.
 
 
-Note: Unzip Users/rosafilgueira/EPCC/ATI-SE/Humanities/Rosa_Versions/cluster-code/bluclobber/test/fixtures/zips
+Note1: Unzip Users/rosafilgueira/EPCC/ATI-SE/Humanities/Rosa_Versions/cluster-code/bluclobber/test/fixtures/zips
       Install Spark- Mac os x: brew install apache-spark
+
+
+Note2: fab standalone.setup:query=queries/diseases.py
