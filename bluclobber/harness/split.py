@@ -1,6 +1,6 @@
 import glob
 import yaml
-
+import sys
 diseases=set([
         'cholera',
         'tuberculosis',
