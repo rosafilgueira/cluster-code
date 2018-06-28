@@ -25,7 +25,8 @@ Note1: Unzip Users/rosafilgueira/EPCC/ATI-SE/Humanities/Rosa_Versions/cluster-co
       Install Spark- Mac os x: brew install apache-spark
 
 
-Note2: fab standalone.setup:query=queries/diseases.py standalone.test:query_name=diseases 
+Note2: fab standalone.setup:query=queries/diseases.py standalone.test:query_name=diseases
+       fab standalone.setup:query=queries/normaliser.py standalone.test:query_name=normaliser
 
 Dependencies:
 - PyYAML
