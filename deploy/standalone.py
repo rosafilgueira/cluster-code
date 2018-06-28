@@ -31,12 +31,13 @@ def install(query):
 
 
 @task
-def test():
+def test(query):
     '''
     Run the query.
     '''
+    query_name= query.replace('.py','')
     with lcd(env.standalone_deploy_dir+'/bluclobber/harness'):  # pylint: disable=not-context-manager
-        local('nohup ./urika.sh query_sub.py > output_submission &')
+        local('nohup ./urika.sh query_sub.py '+ query_name+ ' > output_submission &')
 
 
 @task
