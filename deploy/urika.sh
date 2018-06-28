@@ -27,6 +27,6 @@ for i in $remote_directory/1*; do
 done
 
 python join.py $output $NP
-python split.py $output $final
+python split_$name'.py' $output $final
 
 
