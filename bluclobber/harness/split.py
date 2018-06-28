@@ -17,7 +17,7 @@ diseases=set([
         'cancer'
         ])
 
-mypath= sys.argv[1]
+mypath=sys.argv[1]
 
 final_files = sorted([f for f in glob.glob(mypath+'/final*')])
 year_data = {}
@@ -43,10 +43,12 @@ for y in year_data:
                 pass
 
 
-path= sys.argv[2]
+path=sys.argv[2]
 
 for d in d_total:
 	print ("dissease %s: %s\n" %(d,d_total[d]))
 	name_file=path+d+".yml"
         with open(name_file, 'w') as outfile:
+		outfile.write('%s: ' % d)
                 yaml.dump(d_total[d], outfile)
+		print "wrote"
