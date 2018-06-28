@@ -25,7 +25,7 @@ for i in $remote_directory/1*; do
   fi
 done
 
-python join.sh $NP
-python split.sh $output $final
+python join.py $NP
+python split.py $output $final
 
 
