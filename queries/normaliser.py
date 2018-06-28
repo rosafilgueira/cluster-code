@@ -8,4 +8,4 @@ def mapper(book):
 reducer = merge_under(triple_sum)
 
 def shuffler(year, count):
-    return year%count
+return year%count
