@@ -2,9 +2,10 @@
 set -x 
 
 query=$1
-NP='4'
-output='./output/'
-final='./data/'
+NP='16'
+name=$2
+output='./output_'$name'/'
+final='./data_'$name'/'
 remote_directory='/mnt/lustre/rfilguei/dch/BritishLibraryBooks'
 
 rm -rf $output
@@ -25,7 +26,7 @@ for i in $remote_directory/1*; do
   fi
 done
 
-python join.py $NP
+python join.py $output $NP
 python split.py $output $final
 
 
