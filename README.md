@@ -26,3 +26,8 @@ Note1: Unzip Users/rosafilgueira/EPCC/ATI-SE/Humanities/Rosa_Versions/cluster-co
 
 
 Note2: fab standalone.setup:query=queries/diseases.py standalone.test
+
+Dependencies:
+- PyYAML
+- mpi4py
+
