@@ -2,7 +2,7 @@
 set -x 
 
 query=$1
-NP='16'
+NP='4'
 name=$2
 output='./output_'$name'/'
 final='./data_'$name'/'
@@ -26,7 +26,7 @@ for i in $remote_directory/1*; do
   fi
 done
 
-python join_$name'.py' $output $NP
+python join.py $output $NP
 if query != 'normaliser':
 	python split_$name'.py' $output $final
 
