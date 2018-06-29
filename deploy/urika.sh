@@ -27,6 +27,7 @@ for i in $remote_directory/1*; do
 done
 
 python join.py $output $NP
-python split_$name'.py' $output $final
+if query != 'normaliser':
+	python split_$name'.py' $output $final
 
 
