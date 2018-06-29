@@ -9,7 +9,7 @@ outpath='./data_normaliser/'
 outfilename=outpath+"normaliser.yml"
 for i in file_year:
 	filename=path+"out_"+i
-	with open(outfilename, 'wb') as outfile:
+	with open(outfilename, 'a+') as outfile:
 		for k in range(int(np)):
 			try:
 				filename_f=filename+"_"+str(k)+".yml"
