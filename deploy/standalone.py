@@ -25,7 +25,7 @@ def install(query):
     with lcd(env.standalone_deploy_dir):  # pylint: disable=not-context-manager
         local('cp -r ../bluclobber/ .')
         local('cp ../' + query + ' ./bluclobber/harness/query_sub.py')
-        local('cp ../deploy/urika.sh ./bluclobber/harness/.')
+        local('cp ../deploy/urika_login.sh ./bluclobber/harness/.')
         local('find . -iname "*.pyc" -delete')
         local('find . -iname "__pycache__" -delete')
 
@@ -36,7 +36,7 @@ def test(query_name):
     Run the query.
     '''
     with lcd(env.standalone_deploy_dir+'/bluclobber/harness'):  # pylint: disable=not-context-manager
-        local('nohup ./urika.sh query_sub.py '+ query_name+ ' > output_submission &')
+        local('nohup ./urika_login.sh query_sub.py '+ query_name+ ' > output_submission &')
         #local('./urika.sh query_sub.py '+ query_name )
 
 
