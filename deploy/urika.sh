@@ -2,7 +2,7 @@
 set -x 
 
 query=$1
-NP='4'
+NP='16'
 name=$2
 output='./output_'$name'/'
 final='./data_'$name'/'
