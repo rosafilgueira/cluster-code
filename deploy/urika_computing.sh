@@ -7,6 +7,7 @@ name=$2
 output='./output_'$name'/'
 final='./data_'$name'/'
 remote_directory='/mnt/lustre/rfilguei/dch/BritishLibraryBooks'
+local_directory='/mnt/lustre/rfilguei/BritishLibraryBooks'
 
 rm -rf $output
 rm -rf $final
@@ -21,7 +22,6 @@ for i in $remote_directory/15*; do
 	path=$local_directory'/'$year
 	rpath=$remote_directory'/'$year'/*'
 	mkdir $path
-	echo "Rosa" $i
 	cp $rpath $path'/.'
 	outputpath=$output
 	outputpath+="out_"$year
