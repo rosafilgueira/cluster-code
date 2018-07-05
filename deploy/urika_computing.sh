@@ -16,7 +16,7 @@ mkdir $output
 mkdir $final
 
 
-for i in $remote_directory/15*; do
+for i in $remote_directory/1*; do
   if [ -d "$i" ]; then
 	year=${i##*/}
 	path=$local_directory'/'$year
