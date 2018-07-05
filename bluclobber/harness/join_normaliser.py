@@ -5,8 +5,7 @@ file_year=["1510_1699", "1700_1799", "1800_1809", "1810_1819", "1820_1829","1830
 import shutil
 path= sys.argv[1]
 np= sys.argv[2]
-outpath='./data_normaliser/'
-outfilename=outpath+"normaliser.yml"
+outfilename=path+"joined_normaliser.yml"
 for i in file_year:
 	filename=path+"out_"+i
 	with open(outfilename, 'a+') as outfile:

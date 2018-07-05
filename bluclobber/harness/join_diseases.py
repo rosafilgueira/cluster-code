@@ -7,7 +7,7 @@ path= sys.argv[1]
 np= sys.argv[2]
 for i in file_year:
 	filename=path+"out_"+i
-	outfilename=path+"final_"+i+".yml"
+	outfilename=path+"joined_"+i+".yml"
 	with open(outfilename, 'wb') as outfile:
 		for k in range(int(np)):
 			try:
