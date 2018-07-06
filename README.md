@@ -29,7 +29,7 @@ Note2-Testing: fab standalone.setup:query=queries/diseases.py standalone.test:qu
        fab standalone.setup:query=queries/normaliser.py standalone.test:query_name=normaliser
        
 Note3-Production: fab urika.setup:query=queries/normaliser.py urika.run:query_name=normaliser
-       fab urika.setup:query=queries/diseases.py urika.run:query_name=diseases
+       fab urika.setup:query=queries/normaliser.py urika.run:query_name=diseases
 
 
 Dependencies:
