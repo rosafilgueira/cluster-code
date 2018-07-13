@@ -1,0 +1,4 @@
+*.pyc
+
+# fab auto-built directories
+production
