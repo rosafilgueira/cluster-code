@@ -1,3 +1,5 @@
+from itertools import chain
+from collections import defaultdict
 import glob
 import yaml
 import sys
@@ -43,7 +45,6 @@ for y in year_data:
                                 dict1[k].append(v)
                         dict2={key: sum(dict1[key]) for key in dict1}
                         d_total[d].update(dict2)
-                print
             except:
                 pass
 
