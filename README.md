@@ -128,25 +128,13 @@ fab urika.setup:query=queries/normaliser.py urika.run:query_name=normaliser
 
 This will process the data, using MPI, as background processes.
 
-To check if the processing has completed, inspect the `output_submission` log file:
-
-```
-tail production/bluclobber/harness/output_submission
-```
-
-You should see:
-
-```
-+ python result_normaliser.py ./output_normaliser/ ./data_normaliser/
-```
-
-If processing is still ongoing, run:
+To check if the processing has completed, check the running processes:
 
 ```
 ps
 ```
 
-This will show the following running processes:
+If processing is still ongoing, this will show the following running processes:
 
 ```
    PID TTY          TIME CMD
@@ -157,7 +145,9 @@ This will show the following running processes:
 ...
 ```
 
-Copy `data_normaliser/normaliser.yml`, and other outputs, before running another query:
+The query may take ~1h10m to complete.
+
+When processing has completed, copy `data_normaliser/normaliser.yml`, and other outputs, before running another query:
 
 ```
 mkdir ~/cluster-code-results
@@ -168,9 +158,30 @@ cp production/bluclobber/harness/output_submission ~/cluster-code-results/output
 
 These file are needed for visualising results. `production/` will be deleted and recreated when running subsequent queries.
 
-### Check normaliser query results
+### Run diseases query
 
-As a very quick and dirty check, run:
+This is done in the same way as for a normaliser query above, only the commands and result file names differ.
+
+Run:
+
+```
+fab urika.setup:query=queries/normaliser.py urika.run:query_name=diseases
+```
+The query may take ~1h30m to complete.
+
+When processing has completed, copy `data_diseases/*.yml`, and other outputs, before running another query:
+
+```
+cp -r production/bluclobber/harness/data_diseases/ ~/cluster-code-results/
+cp -r production/bluclobber/harness/output_diseases/ ~/cluster-code-results/
+cp production/bluclobber/harness/output_submission ~/cluster-code-results/output_submission_diseases.txt
+```
+
+These file are needed for visualising results. `production/` will be deleted and recreated when running subsequent queries.
+
+### Check query results
+
+To do a very quick and dirty check of the normaliser query results, run:
 
 ```
 wc production/bluclobber/harness/data_normaliser/normaliser.yml
@@ -182,80 +193,7 @@ You should see:
 287 1148 7780 production/bluclobber/harness/data_normaliser/normaliser.yml
 ```
 
-Run:
-
-```
-head production/bluclobber/harness/data_normaliser/normaliser.yml
-```
-
-You should see:
-
-```
-1788:  [102, 22588, 4055011]
-1789:  [46, 8704, 2189602]
-1853:  [593, 241076, 77715088]
-1780:  [28, 3387, 764487]
-1781:  [29, 5442, 1265452]
-1782:  [23, 3290, 573673]
-1783:  [23, 2704, 438293]
-1784:  [22, 2626, 1276893]
-1785:  [43, 10245, 2894281]
-1786:  [34, 2624, 442562]
-```
-
-### Run diseases query
-
-Run:
-
-```
-fab urika.setup:query=queries/normaliser.py urika.run:query_name=diseases
-```
-
-This will process the data, using MPI, as background processes.
-
-To check if the processing has completed, inspect the `output_submission` log file:
-
-```
-tail production/bluclobber/harness/output_submission
-```
-
-You should see:
-
-```
-dissease diarrhoea: {1824: 2, 1860: 2, 1862: 36, 1888: 1, 1867: 2, 1868: 1, 1807: 1, 1880: 1, 1881: 2, 1882: 1, 1819: 2, 1822: 1, 1760: 1, 1890: 1, 1894: 1, 1895: 2, 1832: 2, 1852: 1, 1898: 2, 1835: 1, 1839: 59, 1896: 2, 1843: 1, 1844: 1, 1886: 1, 1777: 1, 1788: 1}
-
-wrote
-```
-
-If processing is still ongoing, run:
-
-```
-ps
-```
-
-This will show the following running processes:
-
-```
-   PID TTY          TIME CMD
-...
-126384 pts/2    00:00:00 urika.sh
-126389 pts/2    00:00:00 mrun
-126390 pts/2    00:00:00 mrun.py
-```
-
-Copy `data_diseases/*.yml`, and other outputs, before running another query:
-
-```
-cp -r production/bluclobber/harness/data_diseases/ ~/cluster-code-results/
-cp -r production/bluclobber/harness/output_diseases/ ~/cluster-code-results/
-cp production/bluclobber/harness/output_submission ~/cluster-code-results/output_submission_diseases.txt
-```
-
-These file are needed for visualising results. `production/` will be deleted and recreated when running subsequent queries.
-
-### Check disease query results
-
-As a very quick and dirty check, run:
+To do a very quick and dirty check of the disease query results, run:
 
 ```
 wc production/bluclobber/harness/data_diseases/*.yml
@@ -279,6 +217,12 @@ You should see:
    13   207  1067 production/bluclobber/harness/data_diseases/typhus.yml
    13   223  1095 production/bluclobber/harness/data_diseases/whooping.yml
 ```
+
+Query result data files with the expected results data can be found in the [epcc-master](https://github.com/alan-turing-institute/cluster-code-visualisations/tree/epcc-master) branch of [alan-turing-institute/cluster-code-visualisations](https://github.com/alan-turing-institute/cluster-code-visualisations) in the [diseases/data](https://github.com/alan-turing-institute/cluster-code-visualisations/tree/epcc-master/diseases/data) directory.
+
+### Visualising query results
+
+To visualise the query results, see the [epcc-master](https://github.com/alan-turing-institute/cluster-code-visualisations/tree/epcc-master) branch of [alan-turing-institute/cluster-code-visualisations](https://github.com/alan-turing-institute/cluster-code-visualisations).
 
 ### Notes
 
