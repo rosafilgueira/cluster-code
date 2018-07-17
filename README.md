@@ -160,10 +160,10 @@ This will show the following running processes:
 Copy `data_normaliser/normaliser.yml`, and other outputs, before running another query:
 
 ```
-mkdir results
-cp -r production/bluclobber/harness/data_normaliser/ results/
-cp -r production/bluclobber/harness/output_normaliser/ results/
-cp production/bluclobber/harness/output_submission results/output_submission_normaliser.txt
+mkdir ~/cluster-code-results
+cp -r production/bluclobber/harness/data_normaliser/ ~/cluster-code-results/
+cp -r production/bluclobber/harness/output_normaliser/ ~/cluster-code-results/
+cp production/bluclobber/harness/output_submission ~/cluster-code-results/output_submission_normaliser.txt
 ```
 
 These file are needed for visualising results. `production/` will be deleted and recreated when running subsequent queries.
@@ -246,9 +246,9 @@ This will show the following running processes:
 Copy `data_diseases/*.yml`, and other outputs, before running another query:
 
 ```
-cp -r production/bluclobber/harness/data_diseases/ results/
-cp -r production/bluclobber/harness/output_diseases/ results/
-cp production/bluclobber/harness/output_submission results/output_submission_diseases.txt
+cp -r production/bluclobber/harness/data_diseases/ ~/cluster-code-results/
+cp -r production/bluclobber/harness/output_diseases/ ~/cluster-code-results/
+cp production/bluclobber/harness/output_submission ~/cluster-code-results/output_submission_diseases.txt
 ```
 
 These file are needed for visualising results. `production/` will be deleted and recreated when running subsequent queries.
