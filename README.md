@@ -146,11 +146,15 @@ If processing is still ongoing, run:
 ps
 ```
 
-This will show `urika.sh` as a running process:
+This will show the following running processes:
 
 ```
    PID TTY          TIME CMD
-135097 pts/0    00:00:00 urika.sh
+...
+105805 pts/2    00:00:00 urika.sh
+105810 pts/2    00:00:00 mrun
+105811 pts/2    00:00:00 mrun.py
+...
 ```
 
 Copy `data_normaliser/normaliser.yml`, and other outputs, before running another query:
@@ -229,11 +233,14 @@ If processing is still ongoing, run:
 ps
 ```
 
-This will show `urika.sh` as a running process:
+This will show the following running processes:
 
 ```
    PID TTY          TIME CMD
-135097 pts/0    00:00:00 urika.sh
+...
+126384 pts/2    00:00:00 urika.sh
+126389 pts/2    00:00:00 mrun
+126390 pts/2    00:00:00 mrun.py
 ```
 
 Copy `data_diseases/*.yml`, and other outputs, before running another query:
@@ -283,11 +290,11 @@ By default, 16 nodes are used, as specified in `urika.sh`. The code does not sca
 $ grep 1735 production/bluclobber/harness/output_normaliser/joined_normaliser.yml
 1735: [12, 1226, 347355]
 1735: [1, 330, 87592]
-```
-```
+
 $ grep 1735 production/bluclobber/harness/data_normaliser/normaliser.yml
 1735:  [13, 1556, 434947]
 ```
+
 `bluclobber/harness/result_normaliser.py` processes `joined_normaliser.yml` into a single file with one key per year. It handles any duplicated keys in `joined_normaliser.yml` by summing the values of the duplicates.
 
 `bluclubber/harness/join_diseases.py` merges the results from each process (held in `production/bluclobber/harness/output_diseases`) into a collection of files `joined_YYYY_YYYY.yml (e.g. `joined_1510_1699.yml`) for each set of years, in the same directory. However, this can also result in duplicated keys in the joined files.
