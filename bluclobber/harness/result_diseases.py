@@ -1,3 +1,5 @@
+from itertools import chain
+from collections import defaultdict
 import glob
 import yaml
 import sys
@@ -33,12 +35,16 @@ for f in joined_files:
 d_total={}
 
 for y in year_data:
-	for d in diseases:
+        for d in diseases:
             try:
-	        if d not in d_total:
-			d_total[d]=year_data[y][d]
-	        else:
-			d_total[d].update(year_data[y][d])
+                if d not in d_total:
+                        d_total[d]=year_data[y][d]
+                else:
+                        dict1 = defaultdict(list)
+                        for k, v in chain(d_total[d].items(), year_data[y][d].items()):
+                                dict1[k].append(v)
+                        dict2={key: sum(dict1[key]) for key in dict1}
+                        d_total[d].update(dict2)
             except:
                 pass
 
