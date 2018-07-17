@@ -90,7 +90,7 @@ mkdir blpaper
 sshfs -o intr,large_read,auto_cache,workaround=all -oPort=22222 <your-uun>@chss.datastore.ed.ac.uk:/chss/datastore/chss/groups/Digital-Cultural-Heritage dch
 ```
 
-Create data directory on Lustre:
+Create data directory on Lustre file system, `lustre`:
 
 ```
 mkdir -P /mnt/lustre/<your-uun>/dch
@@ -102,7 +102,7 @@ Copy data files into `lustre` file system:
 source deploy/bl_copy.sh ~/dch/BritishLibraryBooks/ /mnt/lustre/<your-uun>/dch/BritishLibraryBooks
 ```
 
-This may take some time.
+This may take some time!
 
 Alternatively, use `<your-urika-username>` instead of `<your-uun>`.
 
@@ -112,7 +112,7 @@ Alternatively, use `<your-urika-username>` instead of `<your-uun>`.
 
 ### Update execution script
 
-Change urika.sh to specify the path to your files e.g.:
+Change `urika.sh` to specify the path to your files e.g.:
 
 ```
 remote_directory='/mnt/lustre/<your-uun>/dch/BritishLibraryBooks'
@@ -140,20 +140,20 @@ You should see:
 + python result_normaliser.py ./output_normaliser/ ./data_normaliser/
 ```
 
-If processing is still ongoing, running
+If processing is still ongoing, run:
 
 ```
 ps
 ```
 
-will show `urika.sh` as a running process:
+This will show `urika.sh` as a running process:
 
 ```
    PID TTY          TIME CMD
 135097 pts/0    00:00:00 urika.sh
 ```
 
-Copy `data_normaliser/normaliser.yml`, and other outputs, before running another query. This file is needed for visualising results. `production/` will be deleted and recreated when running subsequent queries.
+Copy `data_normaliser/normaliser.yml`, and other outputs, before running another query:
 
 ```
 mkdir results
@@ -162,9 +162,11 @@ cp -r production/bluclobber/harness/output_normaliser/ results/
 cp production/bluclobber/harness/output_submission results/output_submission_normaliser.txt
 ```
 
-### Check normaliser query resuults
+These file are needed for visualising results. `production/` will be deleted and recreated when running subsequent queries.
 
-As a quick and dirty check, run:
+### Check normaliser query results
+
+As a very quick and dirty check, run:
 
 ```
 wc production/bluclobber/harness/data_normaliser/normaliser.yml
@@ -221,20 +223,20 @@ dissease diarrhoea: {1824: 2, 1860: 2, 1862: 36, 1888: 1, 1867: 2, 1868: 1, 1807
 wrote
 ```
 
-If processing is still ongoing, running
+If processing is still ongoing, run:
 
 ```
 ps
 ```
 
-will show `urika.sh` as a running process:
+This will show `urika.sh` as a running process:
 
 ```
    PID TTY          TIME CMD
 135097 pts/0    00:00:00 urika.sh
 ```
 
-Copy `data_diseases/*.yml`, and other outputs, before running another query. This file is needed for visualising results. `production/` will be deleted and recreated when running subsequent queries.
+Copy `data_diseases/*.yml`, and other outputs, before running another query:
 
 ```
 cp -r production/bluclobber/harness/data_diseases/ results/
@@ -242,12 +244,52 @@ cp -r production/bluclobber/harness/output_diseases/ results/
 cp production/bluclobber/harness/output_submission results/output_submission_diseases.txt
 ```
 
+These file are needed for visualising results. `production/` will be deleted and recreated when running subsequent queries.
+
+### Check disease query results
+
+As a very quick and dirty check, run:
+
+```
+wc production/bluclobber/harness/data_diseases/*.yml
+```
+
+You should see:
+
+```
+   18   295  1497 production/bluclobber/harness/data_diseases/cancer.yml
+   12   191  1036 production/bluclobber/harness/data_diseases/cholera.yml
+   21   341  1804 production/bluclobber/harness/data_diseases/consumption.yml
+    3    55   261 production/bluclobber/harness/data_diseases/diarrhoea.yml
+    5    87   438 production/bluclobber/harness/data_diseases/diphtheria.yml
+    6   103   480 production/bluclobber/harness/data_diseases/dysentry.yml
+   13   211  1080 production/bluclobber/harness/data_diseases/measles.yml
+  287  1148  7780 production/bluclobber/harness/data_diseases/normaliser.yml
+   11   191   940 production/bluclobber/harness/data_diseases/phthisis.yml
+   19   305  1582 production/bluclobber/harness/data_diseases/smallpox.yml
+    5    79   381 production/bluclobber/harness/data_diseases/tuberculosis.yml
+    9   151   767 production/bluclobber/harness/data_diseases/typhoid.yml
+   13   207  1067 production/bluclobber/harness/data_diseases/typhus.yml
+   13   223  1095 production/bluclobber/harness/data_diseases/whooping.yml
+```
+
 ### Notes
 
-16 nodes are used, as specified in urika.sh. The code does not sale beyond that
+By default, 16 nodes are used, as specified in `urika.sh`. The code does not scale beyond that
 
-`bluclubber/harness/join_*py` merges files from each process, but can end up with duplicated keys.
+`bluclubber/harness/join_normaliser.py` merges the results from each process (held in `production/bluclobber/harness/output_normaliser`) into a `joined_normaliser.yml` file in the same directory. However, this can result in duplicated keys in the joined files. For example:
 
-`bluclobber/harness/result_diseases.py` creates a single file for each type of disease.
+```
+$ grep 1735 production/bluclobber/harness/output_normaliser/joined_normaliser.yml
+1735: [12, 1226, 347355]
+1735: [1, 330, 87592]
+```
+```
+$ grep 1735 production/bluclobber/harness/data_normaliser/normaliser.yml
+1735:  [13, 1556, 434947]
+```
+`bluclobber/harness/result_normaliser.py` processes `joined_normaliser.yml` into a single file with one key per year. It handles any duplicated keys in `joined_normaliser.yml` by summing the values of the duplicates.
 
-`bluclobber/harness/result_normalize.py` creates a single file with one key per year.
+`bluclubber/harness/join_diseases.py` merges the results from each process (held in `production/bluclobber/harness/output_diseases`) into a collection of files `joined_YYYY_YYYY.yml (e.g. `joined_1510_1699.yml`) for each set of years, in the same directory. However, this can also result in duplicated keys in the joined files.
+
+`bluclobber/harness/result_diseases.py` creates a single file for each type of disease, with one key per year. It handles duplicated keys by summing the values of the duplicates.
