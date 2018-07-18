@@ -102,8 +102,6 @@ Copy data files into `lustre` file system:
 source deploy/bl_copy.sh ~/dch/BritishLibraryBooks/ /mnt/lustre/<your-uun>/dch/BritishLibraryBooks
 ```
 
-This may take some time!
-
 Alternatively, use `<your-urika-username>` instead of `<your-uun>`.
 
 **Important note:**
@@ -145,8 +143,6 @@ If processing is still ongoing, this will show the following running processes:
 ...
 ```
 
-The query may take ~1h10m to complete.
-
 When processing has completed, copy `data_normaliser/normaliser.yml`, and other outputs, before running another query:
 
 ```
@@ -167,7 +163,6 @@ Run:
 ```
 fab urika.setup:query=queries/normaliser.py urika.run:query_name=diseases
 ```
-The query may take ~1h30m to complete.
 
 When processing has completed, copy `data_diseases/*.yml`, and other outputs, before running another query:
 
@@ -226,7 +221,7 @@ To visualise the query results, see the [epcc-master](https://github.com/alan-tu
 
 ### Notes
 
-By default, 16 nodes are used, as specified in `urika.sh`. The code does not scale beyond that
+By default, 16 nodes are used, as specified in `urika.sh`.
 
 `bluclubber/harness/join_normaliser.py` merges the results from each process (held in `production/bluclobber/harness/output_normaliser`) into a `joined_normaliser.yml` file in the same directory. However, this can result in duplicated keys in the joined files. For example:
 
