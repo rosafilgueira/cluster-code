@@ -6,7 +6,7 @@ NP='16'
 name=$2
 output='./output_'$name'/'
 final='./data_'$name'/'
-remote_directory='/mnt/lustre/michaelj/dch/BritishLibraryBooks'
+remote_directory='/mnt/lustre/'$USER'/dch/BritishLibraryBooks'
 
 rm -rf $output
 rm -rf $final
@@ -14,7 +14,7 @@ rm -rf $final
 mkdir $output
 mkdir $final
 
-for i in $remote_directory/1*; do
+for i in $remote_directory/*; do
   if [ -d "$i" ]; then
 	path=$i
 	outputpath=$output
