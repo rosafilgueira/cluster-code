@@ -226,6 +226,7 @@ Run:
 
 ```bash
 fab urika.setup:query=queries/<QUERY-NAME>.py urika.run:query_name=<QUERY-NAME>
+```
 
 where `<QUERY-NAME>` is one of `total_books`, `total_pages` or `total_words`. 
 
