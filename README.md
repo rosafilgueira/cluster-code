@@ -220,6 +220,31 @@ for i in $remote_directory/1510*; do
 for i in $remote_directory/*; do
 ```
 
+### Run total books, pages, words queries across all books
+
+Run:
+
+```bash
+fab urika.setup:query=queries/<QUERY-NAME>.py urika.run:query_name=<QUERY-NAME>
+
+where `<QUERY-NAME>` is one of `total_books`, `total_pages` or `total_words`. 
+
+When processing is complete, there will be one data file in `production/bluclobber/harness/output_<QUERY-NAME>/` per period (e.g. for 1510-1699, etc). You can combine these into a single results file as follows:
+
+```
+python bluclobber/tools/<JOINER>.py production/bluclobber/harness/output_<QUERY-NAME>/ <QUERY-NAME>.txt.
+```
+
+For `total_books`, use `join_values.py` for `<JOINER>`.
+
+For `total_pages` and `total_words`, use `join_lists.py` for `<JOINER>`.
+
+The results should be as follows:
+
+* `total_books.txt`: `63701`
+* `total_pages.txt`: `[63701, 22044324]`
+* `total_words.txt`: `[63701, 6866559285]`
+
 ### Run normaliser query
 
 Run:
