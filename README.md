@@ -354,7 +354,11 @@ k, shuffler=shuffler)
   File "query.py", line 30, in main
 ```
 
-### Notes
+### total_books|pages|words and errors in output_submission
+
+The `output_submission` log file will contain errors as there are no `join_` or `result_` Python scripts called by `urika.sh` when these queries are run. Similarly, there are no data_* directories as there are no scripts to post-process the data.
+
+### normaliser, diseases and post-processing
 
 `bluclubber/harness/join_normaliser.py` merges the results from each process (held in `production/bluclobber/harness/output_normaliser`) into a `joined_normaliser.yml` file in the same directory. However, this is a simple script that can result in duplicated keys in the joined files. For example:
 
