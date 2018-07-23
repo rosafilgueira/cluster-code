@@ -143,7 +143,7 @@ for i in $remote_directory/*; do
 for i in $remote_directory/1510*; do
 ```
 
-## Run total books query
+### Run total books query
 
 Run:
 
@@ -157,14 +157,14 @@ When processing is complete, check the results:
 cat production/bluclobber/harness/output_total_books/out_1510_1699_0.yml
 ```
 
-You should get thje result `books` with value:
+You should get the result `books` with value:
 
 ```bash
 693
 ...
 ```
 
-## Run total pages query
+### Run total pages query
 
 Run:
 
@@ -184,7 +184,7 @@ You should get the result `[books, pages]` with value:
 [693, 62768]
 ```
 
-## Run total words query
+### Run total words query
 
 Run:
 
