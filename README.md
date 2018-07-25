@@ -324,6 +324,11 @@ You should see:
 
 Query result data files with the expected results data can be found in the [epcc-master](https://github.com/alan-turing-institute/cluster-code-visualisations/tree/epcc-master) branch of [alan-turing-institute/cluster-code-visualisations](https://github.com/alan-turing-institute/cluster-code-visualisations) in the [diseases/data](https://github.com/alan-turing-institute/cluster-code-visualisations/tree/epcc-master/diseases/data) directory.
 
+You can compare your result files to those in `visualisations` using the basic `bluclobber/tools/compare.py` script e.g.
+
+```bash
+python compare.py```
+
 ### Visualising query results
 
 To visualise the query results, see the [epcc-master](https://github.com/alan-turing-institute/cluster-code-visualisations/tree/epcc-master) branch of [alan-turing-institute/cluster-code-visualisations](https://github.com/alan-turing-institute/cluster-code-visualisations).
