@@ -327,7 +327,21 @@ Query result data files with the expected results data can be found in the [epcc
 You can compare your result files to those in `visualisations` using the basic `bluclobber/tools/compare.py` script e.g.
 
 ```bash
-python compare.py```
+python bluclobber/tools/compare.py production/bluclobber/harness/data_diseases/consumption.yml ~/visualisations/diseases/data-ucl/consumption.yml
+```
+```
+Key-values in /home/users/<your-urika-username>/visualisations/diseases/data-ucl/consumption.yml only:
+      1899:        748
+      1900:          7
+      1917:          5
+      1926:          1
+Different value for key:       None:          1        242
+Different value for key:       1847:       1320       1299
+Different value for key:       1876:        660        659
+Different value for key:       1879:        889        888
+Different value for key:       1881:       1150       1141
+Different value for key:       1882:        978        973
+```
 
 ### Visualising query results
 
